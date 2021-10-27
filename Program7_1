@@ -1,0 +1,93 @@
+/*
+
+Name of this C++ program Triangle shape identifier
+
+Programmer: Engel,Alex
+
+Course: CSC160-141 Computer Science I C++ Fall 2021
+
+Submission Date: 10/27/2021
+
+Brief Description of this program. This program takes the 3 sides of
+a triangle and tells what type of triangle it is.
+
+*/
+
+// include io stream
+#include <iostream>
+//use std namespace
+using namespace std;
+// declare functions
+void triangleShape(double side1,double side2,double side3);
+// main program
+int main()
+{
+    //declare enumeration type
+    enum {scalene=1,isosceles=2,equlateral=3,noTriangle=4};
+    // declare variables
+    double side1,side2,side3;
+    // tell what program does
+    cout << "This program takes the 3 sides of a triangle and tells what type of triangle it is" << endl;
+    // get sides of triangle
+    cout << "Please enter the 3 sides separated by spaces" << endl;
+    // get user input
+    cin >> side1 >> side2 >>side3;
+    // call triangleShape function and pass values into it
+    triangleShape(side1,side2,side3);
+    return 0;
+}
+// triangle shape module
+void triangleShape(double side1, double side2, double side3)
+{
+   //declare enumeration type
+   enum {scalene=1,isosceles=2,equlateral=3,noTriangle=4};
+   // declare variable
+   int triangleType;
+
+   // if else statement to check for a triangle
+   if (side1+side2 < side3 || side2 + side3 < side1 || side1 + side3 < side2)
+   {
+       // set int to no triangle
+       triangleType=noTriangle;
+   }
+   // if else statement to check scalene triangle
+   else if (side1 != side2 && side2 != side3 )
+   {
+       //set int to scalene
+       triangleType=scalene;
+   }
+    // if else statement to check isosceles triangle
+   else if (side1 == side2 || side2 == side3)
+   {
+       // set int to isosceles
+       triangleType=isosceles;
+   }
+   // if else statement to check equilateral triangle
+   else if (side1 == side2 && side2 == side3)
+   {
+       //set int to equilateral
+       triangleType=equlateral;
+   }
+
+    // switch case for displaying triangle type
+    switch (triangleType)
+    {
+        // case 1 dipsplay
+        case 1:
+           cout << "That is a scalene triangle"<< endl;
+           break;
+        //case 2 display
+        case 2:
+           cout << "That is an isosceles triangle"<< endl;
+           break;
+        //case 3 display
+        case 3:
+            cout<< "That is an equilateral triangle"<< endl;
+            break;
+        // case 4 display
+        case 4:
+            cout<< "That is not a triangle"<< endl;
+            break;
+    }
+
+}
