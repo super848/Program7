@@ -1,0 +1,237 @@
+/*
+
+Name of this C++ program Number manipulator
+
+Programmer: Engel,Alex
+
+Course: CSC160-141 Computer Science I C++ Fall 2021
+
+Submission Date: 10/27/2021
+
+Brief Description of this program. This program performs various operations on a
+number.
+*/
+
+
+// include io stream math std lib and time
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+// use std namespace
+using namespace std;
+// declare functions
+int doubleNum(int num);
+int reverseDigits(int num);
+int raisePower (int num);
+int sum (int num);
+int raiseDigit (int num);
+int raiseLast (int num);
+
+//main function
+int main()
+{
+    // declare variables
+    int input,num;
+    int seed = time(0);
+    // seed random number
+    srand(seed);
+    // set num to random number
+    num = rand() %100;
+    // display number
+    cout<< "Your number is "<< num<<endl;
+    // while loop to repeat menu
+    while (input != 7 )
+    {
+        // prompt user for input
+        cout << "What would you like to do to your number" << endl;
+        cout << "1: Double the number"<< endl;
+        cout << "2: Reverse the digits"<< endl;
+        cout << "3: Raise the number to a power"<< endl;
+        cout << "4: sum the digits together"<< endl;
+        cout << "5: Raise the first to power of the second"<<endl;
+        cout << "6: Raise the first two to the power of the third"<<endl;
+        cout << "7: Exit"<<endl;
+        // store user input
+        cin  >> input;
+
+
+                // switch case to call functions
+                switch (input)
+                {
+                //call function for doubling
+                case 1:
+                    //redefine num
+                    num=doubleNum(num);
+                    break;
+                //call function for reversing digits
+                case 2:
+                    //redefine num
+                    num=reverseDigits(num);
+                    break;
+                // call function for raising number to a power
+                case 3:
+                    //redefine num
+                    num=raisePower(num);
+                    break;
+                // call function for sum the digits
+                case 4:
+                    num=sum(num);
+                    break;
+                //call the function for raising the first to the power of second
+                case 5:
+                    //redefine num
+                    num=raiseDigit(num);
+                    break;
+                //call for raising first to to the last
+                case 6:
+                    //redefine num
+                    num= raiseLast(num);
+                    break;
+                case 7:
+                    //Display end message
+                    cout<<"Thank you for using the program"<<endl;
+                    break;
+                // invalid entry
+                default:
+                    cout<< "Invalid entry"<<endl;
+                    cin >> input;
+                }
+    }
+
+    return 0;
+}
+
+
+// double num function
+int doubleNum( int num)
+{
+    // double number
+    num = num*2;
+    // print result
+    cout<< "The new number is "<< num<<endl;
+    //return num value
+    return num ;
+
+}
+// reversed number function
+int reverseDigits(int num)
+{
+    //local variables
+    int remainder,reversedNum;
+        //do while loop to reverse digits
+    do
+    {
+        // pull last digit from number
+        remainder=num%10;
+        //set next digit in reversed num
+        reversedNum=(reversedNum*10)+remainder;
+        // remove last digit in number
+        num=num/10;
+        // exit while loop
+    }while(num !=0);
+    // set num to new reversed num
+    num= reversedNum;
+    //display new number
+    cout<< "The new number is "<< num<<endl;
+    //return number
+    return num;
+
+}
+// raise power function
+int raisePower(int num)
+{
+    // local variables
+    int power;
+    // prompt user for which power they would like to raise
+    cout<< "Which power would you like to raise the number to? 2, 3, or 4."<<endl;
+    // get user input
+    cin>> power;
+    // raise num to power
+    num= pow(num,power);
+    //display number
+    cout<< "The new number is "<< num<< endl;
+    // return num
+    return num;
+
+}
+// sum function
+int sum (int num)
+{
+    //local variables
+    int digit,sum;
+    //while loop
+        while(num>0)
+        {
+            // pull of last digit
+            digit=num%10;
+            //remove last digit
+            num=num/10;
+            // sum up digits
+            sum=sum+digit;
+        }
+    //change number to sum of digits
+    num=sum;
+    //display number
+    cout<< "The new number is "<< num<< endl;
+    // return num
+    return num;
+}
+// raise digit function
+int raiseDigit(int num)
+{
+    // local variables
+    int last;
+    // check num is only 2 digits
+    if (num >9 && num< 100)
+    {
+       //pull last digit
+       last=num%10;
+       // separate number
+       num=num/10;
+       // raise number to last digit
+       num= pow(num,last);
+       // display number
+       cout<< "The new number is "<< num<< endl;
+    }
+    // default
+    else
+    {
+        // display error message
+        cout << "The number does not have two digits."<<endl;
+    }
+    //return number
+    return num;
+
+}
+// raise digit to last number function
+int raiseLast(int num)
+{
+    // local variables
+    int last;
+    //check if number is 3 digits
+    if (num >99 && num<1000)
+    {
+        //pull last digit
+        last= num%10;
+        // remove last digit from number
+        num=num/10;
+        // raise number to power
+        num =pow(num,last);
+        // display number
+        cout << "The new number is "<<num<<endl;
+    }
+    //default
+    else
+    {
+        //display error message
+        cout<< "The number does not have three digits"<< endl;
+
+    }
+    //return number
+    return num;
+}
+
+
+
+
